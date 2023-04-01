@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components/native";
-import { Text } from "react-native";
+import { Text, View, Image } from "react-native";
 import { Card } from "react-native-paper";
 import { SvgXml } from "react-native-svg";
 import star from "../../../../assets/star";
@@ -50,14 +50,14 @@ const SectionEnd = styled.View`
 export const RestaurantInfoCard = ({ restaurant = {} }) => {
   const {
     name = "Bomba Tapas Bar & Rooftop",
-    icon,
+    icon = "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/lodging-71.png",
     photos = [
       "https://cdn.shopify.com/s/files/1/0502/0411/5096/files/Bomba_1_2048x2048.jpg",
     ],
     address = "103 Lonsdale St, Melbourne, 3000",
     isOpenNow = true,
     rating = 4,
-    isClosedTemporarily,
+    isClosedTemporarily = true,
   } = restaurant;
 
   const ratingArray = Array.from(new Array(Math.floor(rating)));
@@ -74,7 +74,15 @@ export const RestaurantInfoCard = ({ restaurant = {} }) => {
             ))}
           </Rating>
           <SectionEnd>
+            {isClosedTemporarily && (
+              <Text varient="label" style={{ color: "red" }}>
+                CLOSED TEMPORARILY
+              </Text>
+            )}
+            <View style={{ paddingLeft: 16 }} />
             {isOpenNow && <SvgXml xml={open} width={20} height={20} />}
+            <View style={{ paddingLeft: 16 }} />
+            <Image style={{ width: 15, height: 15 }} source={{ uri: icon }} />
           </SectionEnd>
         </Section>
         <Address>{address}</Address>
