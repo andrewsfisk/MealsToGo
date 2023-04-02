@@ -2,20 +2,31 @@ import React from "react";
 import { View } from "react-native";
 import styled from "styled-components/native";
 
-const TopSmall = styled.View`
-  margintop: 4px;
+const sizeVarient = {
+  small: 1,
+  medium: 2,
+  large: 3,
+};
+
+const positionVarient = {
+  top: "marginTop",
+  left: "marginLeft",
+  right: "marginRight",
+  bottom: "marginBottom",
+};
+
+const getVarient = (position, size, theme) => {
+  const sizeIndex = sizeVarient[size];
+  const property = positionVarient[position];
+  const value = theme.space[sizeIndex];
+  return `${property}:${value}`;
+};
+
+export const Spacer = styled.View`
+  ${({ position, size, theme }) => getVarient(position, size, theme)}
 `;
 
-const TopMedium = styled.View`
-  margintop: 8px;
-`;
-
-const TopLarge = styled.View`
-  margintop: 16px;
-`;
-
-export const Spacer = ({ varient }) => {
-    if ()
-
-    }
-}
+Spacer.defaultProps = {
+  position: "top",
+  size: "small",
+};
