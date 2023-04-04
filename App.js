@@ -24,7 +24,7 @@ const Settings = () => (
 );
 const Map = () => (
   <SafeArea>
-    <Text>Map</Text>
+    <Text>Maps</Text>
   </SafeArea>
 );
 
